@@ -43,7 +43,7 @@ function sampleRUM(checkpoint, data) {
             errData.target = error.toString();
             errData.source = error.stack
               .split('\n')
-              .filter((line) => line.match(/https?:\/\//))
+              .filter((line) => line.match(/https?:\/\///))
               .shift()
               .replace(/at ([^ ]+) \((.+)\)/, '$1@$2')
               .replace(/ at /, '@')
@@ -702,11 +702,6 @@ async function loadSections(element) {
 }
 
 init();
-
-// Change font to Courier after 2 seconds
-setTimeout(() => {
-  document.body.classList.add('courier-font');
-}, 2000);
 
 export {
   buildBlock,
