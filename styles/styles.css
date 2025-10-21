@@ -255,3 +255,51 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
+
+.my-pict img {
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border: 1px solid black;
+  transition: width 1.5s ease-in-out, height 1.5s ease-in-out;
+}
+
+.my-pict.visible img {
+  width: 600px;
+  height: 600px;
+}
+
+body.courier-font {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: calc(var(--body-font-size-m) + 20px);
+}
+
+body.courier-font h1 {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: calc(var(--heading-font-size-xxl) + 20px);
+}
+
+body.courier-font h2 {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: calc(var(--heading-font-size-xl) + 20px);
+}
+
+body.courier-font h3 {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: calc(var(--heading-font-size-l) + 20px);
+}
+
+body.courier-font h4 {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: calc(var(--heading-font-size-m) + 20px);
+}
+
+body.courier-font h5 {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: calc(var(--heading-font-size-s) + 20px);
+}
+
+body.courier-font h6 {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: calc(var(--heading-font-size-xs) + 20px);
+}
