@@ -583,26 +583,6 @@ async function loadBlock(block) {
  * @param {Element} block The block element
  */
 function decorateBlock(block) {
-  const pictures = document.querySelectorAll('picture');
-  // eslint-disable-next-line no-restricted-syntax
-  for (const p of pictures) {
-    p.classList.add('my-pict');
-
-    // Grow the image once it's loaded (after 1 second delay)
-    const img = p.querySelector('img');
-    if (img) {
-      if (img.complete) {
-        // Image already loaded
-        setTimeout(() => p.classList.add('visible'), 1000);
-      } else {
-        // Wait for image to load
-        img.addEventListener('load', () => {
-          setTimeout(() => p.classList.add('visible'), 1000);
-        });
-      }
-    }
-  }
-
   const shortBlockName = block.classList[0];
   if (shortBlockName) {
     block.classList.add('block');
@@ -702,11 +682,6 @@ async function loadSections(element) {
 }
 
 init();
-
-// Change font to Courier after 2 seconds
-setTimeout(() => {
-  document.body.classList.add('courier-font');
-}, 2000);
 
 export {
   buildBlock,
