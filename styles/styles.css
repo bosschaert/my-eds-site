@@ -12,7 +12,7 @@
 
 :root {
   /* colors */
-  --background-color: #2a2a2a;
+  --background-color: #ffffff;
   --light-color: #3a3a3a;
   --dark-color: #505050;
   --text-color: #000000;
@@ -38,6 +38,10 @@
 
   /* nav height */
   --nav-height: 64px;
+}
+
+.page2 {
+  --background-color: #2a2a2a;
 }
 
 /* fallback fonts */
@@ -256,7 +260,7 @@ main .section.highlight {
   padding: 40px 0;
 }
 
-.my-pict img {
+.page1 .my-pict img {
   width: 10px;
   height: 10px;
   background-color: red;
