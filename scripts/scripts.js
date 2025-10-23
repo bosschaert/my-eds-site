@@ -85,6 +85,14 @@ export function decorateMain(main) {
   decorateBlocks(main);
 }
 
+function decorateBodyWithPageClass() {
+  const ogUrl = document.querySelector('meta[property="og:url"]');
+  if (ogUrl) {
+    const pageUrl = new URL(ogUrl.content);
+    document.body.classList.add(pageUrl.pathname.split('/').pop());
+  }
+}
+
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
@@ -92,6 +100,7 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  decorateBodyWithPageClass();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
