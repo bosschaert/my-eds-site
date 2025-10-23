@@ -43,6 +43,7 @@
 
 .page2, .page3 {
   --background-color: #2a2a2a;
+  --text-color: #f5f5f5;
 }
 
 /* fallback fonts */
