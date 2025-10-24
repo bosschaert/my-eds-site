@@ -583,7 +583,7 @@ async function loadBlock(block) {
  * @param {Element} block The block element
  */
 function decorateBlock(block) {
-  if (document.body.classList.contains('page1')) {
+  if (document.body.classList.contains('page1') || document.body.classList.contains('page4')) {
     const pictures = document.querySelectorAll('picture');
     // eslint-disable-next-line no-restricted-syntax
     for (const p of pictures) {
