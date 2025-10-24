@@ -15,7 +15,7 @@
   --background-color: #fff;
   --light-color: #3a3a3a;
   --dark-color: #505050;
-  --text-color: #000;
+  --text-color: black;
   --link-color: #6b93ff;
   --link-hover-color: #8fadff;
 
@@ -41,8 +41,8 @@
 }
 
 
-.page2, .page3 {
-  --background-color: #2a2a2a;
+.page2, .page3, .page4 {
+  --background-color: darkgreen;
 }
 
 /* fallback fonts */
@@ -261,7 +261,7 @@ main .section.highlight {
   padding: 40px 0;
 }
 
-.page1 .my-pict img {
+.page1 .my-pict img, .page4 .my-pict img {
   width: 10px;
   height: 10px;
   background-color: red;
