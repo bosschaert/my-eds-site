@@ -72,6 +72,35 @@ function buildAutoBlocks(main) {
 }
 
 /**
+ * Ensures the first image is eager-loaded to improve LCP
+ * and fixes missing alt text for accessibility
+ * @param {Element} main The main element
+ */
+function optimizeImageLoading(main) {
+  const firstImg = main.querySelector('img');
+  if (firstImg && firstImg.loading === 'lazy') {
+    firstImg.loading = 'eager';
+    firstImg.fetchpriority = 'high';
+  }
+
+  // Fix missing alt text for accessibility
+  const images = main.querySelectorAll('img');
+  images.forEach((img, index) => {
+    if (!img.alt || img.alt.trim() === '') {
+      // Extract meaningful description from surrounding content
+      const prevText = img.closest('p')?.previousElementSibling?.textContent?.trim();
+      if (prevText && prevText.length < 100) {
+        img.alt = prevText;
+      } else if (index === 0) {
+        img.alt = 'Hero image';
+      } else {
+        img.alt = `Image ${index + 1}`;
+      }
+    }
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -83,6 +112,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  optimizeImageLoading(main);
 }
 
 function decorateBodyWithPageClass() {

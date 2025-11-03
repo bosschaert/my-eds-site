@@ -221,6 +221,16 @@ main img {
   height: auto;
 }
 
+main picture {
+  display: block;
+}
+
+main picture img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .icon {
   display: inline-block;
   height: 24px;
@@ -261,18 +271,7 @@ main .section.highlight {
   padding: 40px 0;
 }
 
-.page1 .my-pict img, .page4 .my-pict img {
-  width: 10px;
-  height: 10px;
-  background-color: red;
-  border: 1px solid black;
-  transition: width 1.5s ease-in-out, height 1.5s ease-in-out;
-}
-
-.my-pict.visible img {
-  width: 600px;
-  height: 600px;
-}
+/* Removed problematic image transition that caused CLS */
 
 body.courier-font {
   font-family: 'Courier New', Courier, monospace;
