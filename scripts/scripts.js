@@ -72,6 +72,41 @@ function buildAutoBlocks(main) {
 }
 
 /**
+ * Adds meaningful alt text to images based on surrounding content
+ * @param {Element} main The main element
+ */
+function decorateImagesWithAltText(main) {
+  const images = main.querySelectorAll('img[alt=""]');
+  images.forEach((img) => {
+    // Try to get context from surrounding text
+    let altText = '';
+
+    // Check for text in the same paragraph or next to the image
+    const parentParagraph = img.closest('p');
+    if (parentParagraph) {
+      const nextElement = parentParagraph.nextElementSibling;
+      if (nextElement && nextElement.tagName === 'P') {
+        altText = nextElement.textContent.trim();
+      }
+    }
+
+    // If no context found, use a generic but meaningful alt text
+    if (!altText) {
+      // Extract a meaningful description from the image filename if possible
+      const src = img.getAttribute('src');
+      if (src) {
+        const filename = src.split('/').pop().split('?')[0];
+        altText = `Image: ${filename.replace(/[_-]/g, ' ').replace(/\.[^.]+$/, '')}`;
+      } else {
+        altText = 'Decorative image';
+      }
+    }
+
+    img.setAttribute('alt', altText);
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -83,6 +118,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  decorateImagesWithAltText(main);
 }
 
 function decorateBodyWithPageClass() {
