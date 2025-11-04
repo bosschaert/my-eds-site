@@ -583,33 +583,6 @@ async function loadBlock(block) {
  * @param {Element} block The block element
  */
 function decorateBlock(block) {
-  if (document.body.classList.contains('page1') || document.body.classList.contains('page4')) {
-    const pictures = document.querySelectorAll('picture');
-    // eslint-disable-next-line no-restricted-syntax
-    for (const p of pictures) {
-      p.classList.add('my-pict');
-
-      // Grow the image once it's loaded (after 1 second delay)
-      const img = p.querySelector('img');
-      if (img) {
-        if (img.complete) {
-          // Image already loaded
-          setTimeout(() => p.classList.add('visible'), 1000);
-        } else {
-          // Wait for image to load
-          img.addEventListener('load', () => {
-            setTimeout(() => p.classList.add('visible'), 1000);
-          });
-        }
-      }
-    }
-
-    // Change font to Courier after 2 seconds
-    setTimeout(() => {
-      document.body.classList.add('courier-font');
-    }, 2000);
-  }
-
   const shortBlockName = block.classList[0];
   if (shortBlockName) {
     block.classList.add('block');
