@@ -41,6 +41,31 @@ async function loadFonts() {
 }
 
 /**
+ * Optimize images for CWV: set aspect ratios and eager load above-the-fold images
+ * @param {Element} main The main element
+ */
+function optimizeImages(main) {
+  const images = main.querySelectorAll('img[width][height]');
+  images.forEach((img, index) => {
+    // Set aspect ratio to prevent CLS
+    const width = img.getAttribute('width');
+    const height = img.getAttribute('height');
+    if (width && height && !img.style.aspectRatio) {
+      img.style.aspectRatio = `${width} / ${height}`;
+    }
+
+    // Eager load first 2 images for better LCP
+    if (index < 2 && img.loading === 'lazy') {
+      img.loading = 'eager';
+      // Set high priority for first image
+      if (index === 0) {
+        img.fetchPriority = 'high';
+      }
+    }
+  });
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
@@ -83,6 +108,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  optimizeImages(main);
 }
 
 function decorateBodyWithPageClass() {
