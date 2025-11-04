@@ -41,6 +41,31 @@ async function loadFonts() {
 }
 
 /**
+ * Set explicit dimensions on images to prevent CLS
+ * and optimize loading for above-the-fold images
+ */
+function setImageDimensions(main) {
+  const images = main.querySelectorAll('img[width][height]');
+  images.forEach((img, index) => {
+    // Preserve aspect ratio for all images to prevent CLS
+    if (!img.style.width && !img.style.height && !img.closest('picture[style]')) {
+      const width = img.getAttribute('width');
+      const height = img.getAttribute('height');
+      if (width && height) {
+        img.style.aspectRatio = `${width} / ${height}`;
+      }
+    }
+    // Set first few images to eager loading for LCP optimization
+    if (index < 2 && img.loading === 'lazy') {
+      img.loading = 'eager';
+      if (index === 0) {
+        img.setAttribute('fetchpriority', 'high');
+      }
+    }
+  });
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
@@ -83,6 +108,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  setImageDimensions(main);
 }
 
 function decorateBodyWithPageClass() {
