@@ -72,6 +72,18 @@ function buildAutoBlocks(main) {
 }
 
 /**
+ * Optimize images for better Core Web Vitals (LCP).
+ * Make first image eager for faster LCP.
+ * @param {Element} main The main element
+ */
+function optimizeImages(main) {
+  const firstImg = main.querySelector('img');
+  if (firstImg && firstImg.loading === 'lazy') {
+    firstImg.loading = 'eager';
+  }
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -83,6 +95,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  optimizeImages(main);
 }
 
 function decorateBodyWithPageClass() {

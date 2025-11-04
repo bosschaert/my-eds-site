@@ -583,7 +583,8 @@ async function loadBlock(block) {
  * @param {Element} block The block element
  */
 function decorateBlock(block) {
-  if (document.body.classList.contains('page1') || document.body.classList.contains('page4')) {
+  // Removed page1 from this animation to fix CLS issues for Core Web Vitals
+  if (document.body.classList.contains('page4')) {
     const pictures = document.querySelectorAll('picture');
     // eslint-disable-next-line no-restricted-syntax
     for (const p of pictures) {

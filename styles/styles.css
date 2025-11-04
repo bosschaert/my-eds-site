@@ -261,7 +261,8 @@ main .section.highlight {
   padding: 40px 0;
 }
 
-.page1 .my-pict img, .page4 .my-pict img {
+/* Removed CLS-causing transition for page1 to improve Core Web Vitals */
+.page4 .my-pict img {
   width: 10px;
   height: 10px;
   background-color: red;
@@ -269,7 +270,7 @@ main .section.highlight {
   transition: width 1.5s ease-in-out, height 1.5s ease-in-out;
 }
 
-.my-pict.visible img {
+.page4 .my-pict.visible img {
   width: 600px;
   height: 600px;
 }
