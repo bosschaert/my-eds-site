@@ -261,50 +261,22 @@ main .section.highlight {
   padding: 40px 0;
 }
 
-.page1 .my-pict img, .page4 .my-pict img {
-  width: 10px;
-  height: 10px;
-  background-color: red;
-  border: 1px solid black;
-  transition: width 1.5s ease-in-out, height 1.5s ease-in-out;
+/* Improved accessibility for page1 */
+.page1 {
+  /* Ensure sufficient color contrast */
+  --text-color: #1a1a1a;
+  --background-color: #fff;
 }
 
-.my-pict.visible img {
-  width: 600px;
-  height: 600px;
+.page1 p {
+  /* Improve text readability */
+  line-height: 1.8;
+  margin-bottom: 1em;
 }
 
-body.courier-font {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: calc(var(--body-font-size-m) + 20px);
-}
-
-body.courier-font h1 {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: calc(var(--heading-font-size-xxl) + 20px);
-}
-
-body.courier-font h2 {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: calc(var(--heading-font-size-xl) + 20px);
-}
-
-body.courier-font h3 {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: calc(var(--heading-font-size-l) + 20px);
-}
-
-body.courier-font h4 {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: calc(var(--heading-font-size-m) + 20px);
-}
-
-body.courier-font h5 {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: calc(var(--heading-font-size-s) + 20px);
-}
-
-body.courier-font h6 {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: calc(var(--heading-font-size-xs) + 20px);
+.page1 img {
+  /* Ensure images are accessible and properly sized */
+  display: block;
+  margin: 1.5em auto;
+  border-radius: 4px;
 }
