@@ -262,16 +262,16 @@ main .section.highlight {
 }
 
 .page1 .my-pict img, .page4 .my-pict img {
-  width: 10px;
-  height: 10px;
+  width: 600px;
+  height: 600px;
   background-color: red;
   border: 1px solid black;
-  transition: width 1.5s ease-in-out, height 1.5s ease-in-out;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .my-pict.visible img {
-  width: 600px;
-  height: 600px;
+  opacity: 1;
 }
 
 body.courier-font {
