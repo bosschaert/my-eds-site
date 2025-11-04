@@ -76,17 +76,17 @@
 }
 
 body {
-  display: none;
   margin: 0;
   background-color: var(--background-color);
   color: var(--text-color);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
   line-height: 1.6;
+  opacity: 0;
 }
 
 body.appear {
-  display: block;
+  opacity: 1;
 }
 
 header {
@@ -95,12 +95,13 @@ header {
 
 header .header,
 footer .footer {
-  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.1s;
 }
 
 header .header[data-block-status="loaded"],
 footer .footer[data-block-status="loaded"] {
-  visibility: visible;
+  opacity: 1;
 }
 
 h1,
@@ -261,17 +262,22 @@ main .section.highlight {
   padding: 40px 0;
 }
 
-.page1 .my-pict img, .page4 .my-pict img {
-  width: 10px;
-  height: 10px;
-  background-color: red;
-  border: 1px solid black;
-  transition: width 1.5s ease-in-out, height 1.5s ease-in-out;
+.my-pict img {
+  display: block;
 }
 
-.my-pict.visible img {
+.page1 .my-pict, .page4 .my-pict {
+  min-height: 600px;
+  display: block;
+}
+
+.page1 .my-pict img, .page4 .my-pict img {
   width: 600px;
   height: 600px;
+  background-color: red;
+  border: 1px solid black;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
 }
 
 body.courier-font {
