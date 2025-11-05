@@ -76,17 +76,17 @@
 }
 
 body {
-  display: none;
   margin: 0;
   background-color: var(--background-color);
   color: var(--text-color);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
   line-height: 1.6;
+  visibility: hidden;
 }
 
 body.appear {
-  display: block;
+  visibility: visible;
 }
 
 header {
@@ -262,16 +262,18 @@ main .section.highlight {
 }
 
 .page1 .my-pict img, .page4 .my-pict img {
-  width: 10px;
-  height: 10px;
+  width: 600px;
+  height: 600px;
+  max-width: 100%;
   background-color: red;
   border: 1px solid black;
-  transition: width 1.5s ease-in-out, height 1.5s ease-in-out;
+  transform: scale(0.0167);
+  transform-origin: top left;
+  transition: transform 1.5s ease-in-out;
 }
 
 .my-pict.visible img {
-  width: 600px;
-  height: 600px;
+  transform: scale(1);
 }
 
 body.courier-font {
