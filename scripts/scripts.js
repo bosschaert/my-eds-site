@@ -104,6 +104,12 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
+    // Remove lazy loading from first image for better LCP
+    const firstImg = main.querySelector('img[loading="lazy"]');
+    if (firstImg) {
+      firstImg.removeAttribute('loading');
+      firstImg.setAttribute('fetchpriority', 'high');
+    }
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
