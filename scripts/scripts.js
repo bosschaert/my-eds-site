@@ -94,6 +94,18 @@ function decorateBodyWithPageClass() {
 }
 
 /**
+ * Make first image in main eager loaded for better LCP
+ * @param {Element} main The main element
+ */
+function eagerLoadFirstImage(main) {
+  const firstImg = main.querySelector('img');
+  if (firstImg) {
+    firstImg.loading = 'eager';
+    firstImg.fetchpriority = 'high';
+  }
+}
+
+/**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
  */
@@ -104,6 +116,7 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
+    eagerLoadFirstImage(main);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }

@@ -76,17 +76,18 @@
 }
 
 body {
-  display: none;
   margin: 0;
   background-color: var(--background-color);
   color: var(--text-color);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
   line-height: 1.6;
+  opacity: 0;
+  transition: opacity 0.1s;
 }
 
 body.appear {
-  display: block;
+  opacity: 1;
 }
 
 header {
@@ -218,6 +219,16 @@ button.secondary {
 main img {
   max-width: 100%;
   width: auto;
+  height: auto;
+}
+
+main picture {
+  display: block;
+}
+
+main picture > img {
+  display: block;
+  width: 100%;
   height: auto;
 }
 
