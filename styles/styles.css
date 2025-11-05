@@ -76,17 +76,18 @@
 }
 
 body {
-  display: none;
   margin: 0;
   background-color: var(--background-color);
   color: var(--text-color);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
   line-height: 1.6;
+  opacity: 0;
+  transition: opacity 0.1s ease-in;
 }
 
 body.appear {
-  display: block;
+  opacity: 1;
 }
 
 header {
@@ -217,7 +218,6 @@ button.secondary {
 
 main img {
   max-width: 100%;
-  width: auto;
   height: auto;
 }
 
@@ -262,16 +262,15 @@ main .section.highlight {
 }
 
 .page1 .my-pict img, .page4 .my-pict img {
-  width: 10px;
-  height: 10px;
+  max-width: 100%;
   background-color: red;
   border: 1px solid black;
-  transition: width 1.5s ease-in-out, height 1.5s ease-in-out;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .my-pict.visible img {
-  width: 600px;
-  height: 600px;
+  opacity: 1;
 }
 
 body.courier-font {
