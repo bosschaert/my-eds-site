@@ -5,6 +5,11 @@
       "id": "custom-button",
       "title": "Exterminate",
       "event": "cbut"
+    },
+    {
+      "id": "blah",
+      "title": "Blah",
+      "url": "/tools/sidekick/blah.html"
     }
   ]
 }
