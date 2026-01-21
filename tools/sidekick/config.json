@@ -10,7 +10,7 @@
       "id": "blah",
       "title": "Blah",
       "url": "/tools/sidekick/plg",
-      "isPalette": true
+      "isPopover": true
     }
   ]
 }
