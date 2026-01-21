@@ -2,12 +2,19 @@
   "project": "my-eds-site",
   "plugins": [
     {
+      "id": "splurg",
+      "title": "Splurg",
+      "isContainer": true
+    },
+    {
       "id": "custom-button",
+      "containerId": "splurg",
       "title": "Exterminate",
       "event": "cbut"
     },
     {
       "id": "blah",
+      "containerId": "splurg",
       "title": "Blah",
       "url": "/tools/sidekick/plg",
       "isPopover": true

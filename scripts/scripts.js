@@ -160,18 +160,14 @@ async function loadPage() {
   import('https://da.live/scripts/dapreview.js').then(({ default: daPreview }) => daPreview(loadPage));
 }());
 
-const doFoo = ({ detail: payload }) => {
-  console.log('*** doFoo', payload);
-};
-
 const onCustomButton = ({ detail: payload }) => {
   // Sidekick custom plugin handler
   // eslint-disable-next-line no-console
   console.log('*** custom button clicked', payload);
+  alert('Exterminate!');
 };
 
 const registerSidekickHandlers = (sidekick) => {
-  sidekick.addEventListener('status-fetched', doFoo);
   sidekick.addEventListener('custom:cbut', onCustomButton);
 };
 
