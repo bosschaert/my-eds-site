@@ -9,7 +9,8 @@
     {
       "id": "blah",
       "title": "Blah",
-      "url": "/tools/sidekick/blah.html"
+      "url": "/tools/sidekick/plg",
+      "isPalette": true
     }
   ]
 }
