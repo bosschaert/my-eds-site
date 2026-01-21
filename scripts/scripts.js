@@ -172,7 +172,7 @@ const onCustomButton = ({ detail: payload }) => {
 
 const registerSidekickHandlers = (sidekick) => {
   sidekick.addEventListener('status-fetched', doFoo);
-  sidekick.addEventListener('custom:custom-button', onCustomButton);
+  sidekick.addEventListener('custom:cbut', onCustomButton);
 };
 
 const sk = document.querySelector('aem-sidekick');
