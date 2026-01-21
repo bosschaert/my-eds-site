@@ -1,0 +1,15 @@
+{
+  "project": "my-eds-site",
+  "plugins": [
+    {
+      "id": "custom-button",
+      "title": "Custom Button",
+      "event": "custom:custom-button",
+      "environments": [
+        "edit",
+        "preview",
+        "live"
+      ]
+    }
+  ]
+}

@@ -160,4 +160,28 @@ async function loadPage() {
   import('https://da.live/scripts/dapreview.js').then(({ default: daPreview }) => daPreview(loadPage));
 }());
 
+const doFoo = ({ detail: payload }) => {
+  console.log('*** doFoo', payload);
+};
+
+const onCustomButton = ({ detail: payload }) => {
+  // Sidekick custom plugin handler
+  // eslint-disable-next-line no-console
+  console.log('*** custom button clicked', payload);
+};
+
+const registerSidekickHandlers = (sidekick) => {
+  sidekick.addEventListener('status-fetched', doFoo);
+  sidekick.addEventListener('custom:custom-button', onCustomButton);
+};
+
+const sk = document.querySelector('aem-sidekick');
+if (sk) {
+  registerSidekickHandlers(sk);
+} else {
+  document.addEventListener('sidekick-ready', () => {
+    registerSidekickHandlers(document.querySelector('aem-sidekick'));
+  }, { once: true });
+}
+
 loadPage();
