@@ -164,7 +164,28 @@ const onCustomButton = ({ detail: payload }) => {
   // Sidekick custom plugin handler
   // eslint-disable-next-line no-console
   console.log('*** custom button clicked', payload);
-  alert('Exterminate!');
+  // Show a toast notification instead of alert
+  const toast = document.createElement('div');
+  toast.textContent = 'Exterminate!';
+  toast.style.position = 'fixed';
+  toast.style.bottom = '32px';
+  toast.style.left = '50%';
+  toast.style.transform = 'translateX(-50%)';
+  toast.style.background = 'rgba(30,30,30,0.98)';
+  toast.style.color = '#fff';
+  toast.style.padding = '14px 32px';
+  toast.style.borderRadius = '8px';
+  toast.style.fontSize = '1.1em';
+  toast.style.zIndex = '9999';
+  toast.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+  document.body.appendChild(toast);
+  setTimeout(() => {
+    toast.style.transition = 'opacity 0.5s';
+    toast.style.opacity = '0';
+    setTimeout(() => {
+      document.body.removeChild(toast);
+    }, 500);
+  }, 2000);
 };
 
 const registerSidekickHandlers = (sidekick) => {
