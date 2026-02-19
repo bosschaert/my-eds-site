@@ -603,11 +603,6 @@ function decorateBlock(block) {
         }
       }
     }
-
-    // Change font to Courier after 2 seconds
-    setTimeout(() => {
-      document.body.classList.add('courier-font');
-    }, 2000);
   }
 
   const shortBlockName = block.classList[0];
