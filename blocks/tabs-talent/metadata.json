@@ -1,0 +1,38 @@
+{
+  "variantName": "tabs-talent",
+  "baseBlock": "tabs",
+  "version": "1.0.0",
+  "created": "2026-04-16T13:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.roberthalf.com/us/en",
+    "originPage": "Robert Half homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "grey",
+    "density": "compact",
+    "purpose": "talent-categories",
+    "imagePattern": "icon"
+  },
+  "contentPattern": {
+    "structure": "5 tabs with description + job title links + learn more link",
+    "buttonCount": 5,
+    "imageCount": 3
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "category-based tabbed content",
+      "service or expertise area tabs",
+      "job category browsing interfaces"
+    ],
+    "notSuitableFor": [
+      "simple FAQ tabs",
+      "image gallery tabs"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/us/en"],
+    "reuseCount": 1,
+    "lastUsed": "2026-04-16T13:00:00.000Z"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "variantName": "columns-paired",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2026-04-16T13:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.roberthalf.com/us/en",
+    "originPage": "Robert Half homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "value-propositions",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "image column + text column with 3 value props",
+    "buttonCount": 0,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "image + text side-by-side layouts",
+      "value proposition sections",
+      "feature highlight with illustration"
+    ],
+    "notSuitableFor": [
+      "data/statistics displays",
+      "multi-column grid layouts"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/us/en"],
+    "reuseCount": 1,
+    "lastUsed": "2026-04-16T13:00:00.000Z"
+  }
+}

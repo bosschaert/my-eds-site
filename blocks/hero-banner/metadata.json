@@ -1,0 +1,38 @@
+{
+  "variantName": "hero-banner",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-04-16T13:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.roberthalf.com/us/en",
+    "originPage": "Robert Half homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "dark",
+    "density": "spacious",
+    "purpose": "homepage-hero",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "heading + paragraph + 2 CTAs + background image",
+    "buttonCount": 2,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "homepage hero sections",
+      "landing pages with background images",
+      "pages with bold headline and CTAs"
+    ],
+    "notSuitableFor": [
+      "text-only hero sections",
+      "minimal blog post headers"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/us/en"],
+    "reuseCount": 1,
+    "lastUsed": "2026-04-16T13:00:00.000Z"
+  }
+}

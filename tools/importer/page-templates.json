@@ -1,0 +1,123 @@
+{
+  "templates": [
+    {
+      "name": "homepage",
+      "urls": [
+        "https://www.roberthalf.com/us/en"
+      ],
+      "description": "Robert Half homepage with hero, job search, services overview, and promotional content",
+      "blocks": [
+        {
+          "name": "hero-banner",
+          "instances": [
+            "rhcl-block-full-width-hero"
+          ]
+        },
+        {
+          "name": "cards-insight",
+          "instances": [
+            "rhcl-block-scrolling-cards-collection:has(.featuredcard)"
+          ]
+        },
+        {
+          "name": "columns-stats",
+          "instances": [
+            "rhcl-block-data-visualization"
+          ]
+        },
+        {
+          "name": "columns-paired",
+          "instances": [
+            "rhcl-block-paired-content"
+          ]
+        },
+        {
+          "name": "tabs-talent",
+          "instances": [
+            "rhcl-block-tabbed-content"
+          ]
+        },
+        {
+          "name": "carousel-testimonial",
+          "instances": [
+            "rhcl-block-scrolling-cards-collection:has(.cardtestimonial)"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "section-1",
+          "name": "Hero",
+          "selector": "rhcl-block-full-width-hero",
+          "style": null,
+          "blocks": [
+            "hero-banner"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-2",
+          "name": "Hiring Trends and Insights",
+          "selector": [
+            "#scrollingcardscollectionblock-2f28d7efd8",
+            ".cmp-rhcl-scrolling-cards-collection-block-wrapper"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-insight"
+          ],
+          "defaultContent": [
+            "rhcl-block-scrolling-cards-collection > h2"
+          ]
+        },
+        {
+          "id": "section-3",
+          "name": "Why Robert Half - Stats",
+          "selector": "rhcl-block-data-visualization",
+          "style": null,
+          "blocks": [
+            "columns-stats"
+          ],
+          "defaultContent": [
+            "rhcl-block-data-visualization > h2"
+          ]
+        },
+        {
+          "id": "section-4",
+          "name": "Why Robert Half - Value Props",
+          "selector": "rhcl-block-paired-content",
+          "style": null,
+          "blocks": [
+            "columns-paired"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-5",
+          "name": "Specialized Talent Tabs",
+          "selector": ".cmp-rhcl-tabbed-content-block-wrapper",
+          "style": "grey",
+          "blocks": [
+            "tabs-talent"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "section-6",
+          "name": "Testimonials",
+          "selector": [
+            "#scrollingcardscollectionblock-dc2c367a2e",
+            ".cmp-rhcl-scrolling-cards-collection-block-wrapper:last-of-type"
+          ],
+          "style": null,
+          "blocks": [
+            "carousel-testimonial"
+          ],
+          "defaultContent": [
+            "#scrollingcardscollectionblock-dc2c367a2e rhcl-block-scrolling-cards-collection > h2"
+          ]
+        }
+      ]
+    }
+  ]
+}

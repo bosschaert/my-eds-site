@@ -1,0 +1,16 @@
+{
+  "status": "success",
+  "url": "https://www.roberthalf.com/us/en",
+  "path": "us/en",
+  "timestamp": "2026-04-16T13:21:02.831Z",
+  "title": "Staffing, Recruitment & Job Search | Robert Half",
+  "template": "homepage",
+  "blocks": [
+    "hero-banner",
+    "cards-insight",
+    "columns-stats",
+    "columns-paired",
+    "tabs-talent",
+    "carousel-testimonial"
+  ]
+}

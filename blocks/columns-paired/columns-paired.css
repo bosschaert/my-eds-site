@@ -1,0 +1,33 @@
+.columns-paired > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.columns-paired img {
+  width: 100%;
+}
+
+.columns-paired > div > div {
+  order: 1;
+}
+
+.columns-paired > div > .columns-paired-img-col {
+  order: 0;
+}
+
+.columns-paired > div > .columns-paired-img-col img {
+  display: block;
+}
+
+@media (width >= 900px) {
+  .columns-paired > div {
+    align-items: center;
+    flex-direction: unset;
+    gap: 24px;
+  }
+
+  .columns-paired > div > div {
+    flex: 1;
+    order: unset;
+  }
+}
