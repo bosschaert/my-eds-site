@@ -2,7 +2,6 @@ import {
   buildBlock,
   loadHeader,
   loadFooter,
-  decorateButtons,
   decorateIcons,
   decorateSections,
   decorateBlocks,
@@ -22,6 +21,10 @@ function buildHeroBlock(main) {
   const picture = main.querySelector('picture');
   // eslint-disable-next-line no-bitwise
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
+    // Check if h1 or picture is already inside a hero block
+    if (h1.closest('.hero') || picture.closest('.hero')) {
+      return; // Don't create a duplicate hero block
+    }
     const section = document.createElement('div');
     section.append(buildBlock('hero', { elems: [picture, h1] }));
     main.prepend(section);
@@ -46,8 +49,8 @@ async function loadFonts() {
  */
 function buildAutoBlocks(main) {
   try {
-    // auto block `*/fragments/*` references
-    const fragments = main.querySelectorAll('a[href*="/fragments/"]');
+    // auto load `*/fragments/*` references
+    const fragments = [...main.querySelectorAll('a[href*="/fragments/"]')].filter((f) => !f.closest('.fragment'));
     if (fragments.length > 0) {
       // eslint-disable-next-line import/no-cycle
       import('../blocks/fragment/fragment.js').then(({ loadFragment }) => {
@@ -55,7 +58,7 @@ function buildAutoBlocks(main) {
           try {
             const { pathname } = new URL(fragment.href);
             const frag = await loadFragment(pathname);
-            fragment.parentElement.replaceWith(frag.firstElementChild);
+            fragment.parentElement.replaceWith(...frag.children);
           } catch (error) {
             // eslint-disable-next-line no-console
             console.error('Fragment loading failed', error);
@@ -72,25 +75,55 @@ function buildAutoBlocks(main) {
 }
 
 /**
+ * Decorates formatted links to style them as buttons.
+ * @param {HTMLElement} main The main container element
+ */
+function decorateButtons(main) {
+  main.querySelectorAll('p a[href]').forEach((a) => {
+    a.title = a.title || a.textContent;
+    const p = a.closest('p');
+    const text = a.textContent.trim();
+
+    // quick structural checks
+    if (a.querySelector('img') || p.textContent.trim() !== text) return;
+
+    // skip URL display links
+    try {
+      if (new URL(a.href).href === new URL(text, window.location).href) return;
+    } catch { /* continue */ }
+
+    // require authored formatting for buttonization
+    const strong = a.closest('strong');
+    const em = a.closest('em');
+    if (!strong && !em) return;
+
+    p.className = 'button-wrapper';
+    a.className = 'button';
+    if (strong && em) { // high-impact call-to-action
+      a.classList.add('accent');
+      const outer = strong.contains(em) ? strong : em;
+      outer.replaceWith(a);
+    } else if (strong) {
+      a.classList.add('primary');
+      strong.replaceWith(a);
+    } else {
+      a.classList.add('secondary');
+      em.replaceWith(a);
+    }
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
-  // hopefully forward compatible button decoration
-  decorateButtons(main);
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
-}
-
-function decorateBodyWithPageClass() {
-  const ogUrl = document.querySelector('meta[property="og:url"]');
-  if (ogUrl) {
-    const pageUrl = new URL(ogUrl.content);
-    document.body.classList.add(pageUrl.pathname.split('/').pop());
-  }
+  decorateButtons(main);
 }
 
 /**
@@ -100,7 +133,6 @@ function decorateBodyWithPageClass() {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
-  decorateBodyWithPageClass();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
@@ -123,6 +155,8 @@ async function loadEager(doc) {
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
+  loadHeader(doc.querySelector('header'));
+
   const main = doc.querySelector('main');
   await loadSections(main);
 
@@ -130,7 +164,6 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
@@ -151,54 +184,6 @@ async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
-}
-
-// DA Live Preview
-(async function loadDa() {
-  if (!new URL(window.location.href).searchParams.get('dapreview')) return;
-  // eslint-disable-next-line import/no-unresolved
-  import('https://da.live/scripts/dapreview.js').then(({ default: daPreview }) => daPreview(loadPage));
-}());
-
-const onCustomButton = ({ detail: payload }) => {
-  // Sidekick custom plugin handler
-  // eslint-disable-next-line no-console
-  console.log('*** custom button clicked', payload);
-  // Show a toast notification instead of alert
-  const toast = document.createElement('div');
-  toast.textContent = 'Exterminate!';
-  toast.style.position = 'fixed';
-  toast.style.bottom = '32px';
-  toast.style.left = '50%';
-  toast.style.transform = 'translateX(-50%)';
-  toast.style.background = 'rgba(30,30,30,0.98)';
-  toast.style.color = '#fff';
-  toast.style.padding = '14px 32px';
-  toast.style.borderRadius = '8px';
-  toast.style.fontSize = '1.1em';
-  toast.style.zIndex = '9999';
-  toast.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
-  document.body.appendChild(toast);
-  setTimeout(() => {
-    toast.style.transition = 'opacity 0.5s';
-    toast.style.opacity = '0';
-    setTimeout(() => {
-      document.body.removeChild(toast);
-    }, 500);
-  }, 2000);
-};
-
-const registerSidekickHandlers = (sidekick) => {
-  sidekick.addEventListener('custom:cbut', onCustomButton);
-};
-
-const sk = document.querySelector('aem-sidekick');
-if (sk) {
-  registerSidekickHandlers(sk);
-} else {
-  document.addEventListener('sidekick-ready', () => {
-    registerSidekickHandlers(document.querySelector('aem-sidekick'));
-  }, { once: true });
 }
 
 loadPage();
